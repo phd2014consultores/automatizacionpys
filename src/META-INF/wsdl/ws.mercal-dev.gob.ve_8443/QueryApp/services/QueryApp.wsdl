@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mercal.gob.ve/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="QueryAppService" targetNamespace="http://ws.mercal.gob.ve/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.mercal.gob.ve/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.mercal.gob.ve/">
+  <xs:element name="queryapp" type="tns:queryapp"/>
+  <xs:element name="queryappResponse" type="tns:queryappResponse"/>
+  <xs:complexType name="queryapp">
+    <xs:sequence>
+      <xs:element name="query" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryappResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcepcionServicio" type="tns:ExcepcionServicio"/>
+  <xs:complexType name="ExcepcionServicio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ExcepcionServicio">
+    <wsdl:part element="tns:ExcepcionServicio" name="ExcepcionServicio">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryappResponse">
+    <wsdl:part element="tns:queryappResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryapp">
+    <wsdl:part element="tns:queryapp" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="QueryApp">
+    <wsdl:operation name="queryapp">
+      <wsdl:input message="tns:queryapp" name="queryapp">
+    </wsdl:input>
+      <wsdl:output message="tns:queryappResponse" name="queryappResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ExcepcionServicio" name="ExcepcionServicio">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="QueryAppServiceSoapBinding" type="tns:QueryApp">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="queryapp">
+      <soap12:operation soapAction="urn:queryapp" style="document"/>
+      <wsdl:input name="queryapp">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryappResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ExcepcionServicio">
+        <soap12:fault name="ExcepcionServicio" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="QueryAppService">
+    <wsdl:port binding="tns:QueryAppServiceSoapBinding" name="QueryAppPort">
+      <soap12:address location="https://ws.mercal-dev.gob.ve:8443/QueryApp/services/QueryApp"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

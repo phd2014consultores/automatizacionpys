@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="https://10.8.0.251:8443/QueryApp/services/QueryApp?wsdl" uri="wsdl/10.8.0.251_8443/QueryApp/services/QueryApp.wsdl"/>
+    <system systemId="http://ws.mercal-dev.gob.ve:8080/QueryApp/services/QueryApp?wsdl" uri="wsdl/ws.mercal-dev.gob.ve_8443/QueryApp/services/QueryApp.wsdl"/>
+    <system systemId="https://ws.mercal-dev.gob.ve:8443/QueryApp/services/QueryApp?wsdl" uri="wsdl/ws.mercal-dev.gob.ve_8443/QueryApp/services/QueryApp.wsdl"/>
+    <system systemId="https://phd2014:8443/QueryApp/services/QueryApp?wsdl" uri="wsdl/phd2014_8443/QueryApp/services/QueryApp.wsdl"/>
+</catalog>

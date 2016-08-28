@@ -7,8 +7,7 @@ package automatizacionpys;
 
 //import ve.gob.mercal.ws.ExcepcionServicio_Exception;
 
-import ve.gob.mercal.ws.ExcepcionServicio_Exception;
-
+import ve.gob.mercal.app.services.cargasMAX;
 
 /**
  *
@@ -22,19 +21,6 @@ public class Automatizacionpys {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        String result = "mundo";
-        try {
-            result = queryapp("SELECT id_usuario FROM public.usuarios WHERE usuario= 'admin';");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        
-        System.out.println("hola "+result);
+       
     }  
-
-    private static String queryapp(java.lang.String query) throws ExcepcionServicio_Exception {
-        ve.gob.mercal.ws.QueryAppService service = new ve.gob.mercal.ws.QueryAppService();
-        ve.gob.mercal.ws.QueryApp port = service.getQueryAppPort();
-        return port.queryapp(query);
-    }
 }

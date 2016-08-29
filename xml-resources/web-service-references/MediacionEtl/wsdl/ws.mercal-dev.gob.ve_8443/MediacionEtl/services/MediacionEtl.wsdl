@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mercal.gob.ve/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MediacionEtlService" targetNamespace="http://ws.mercal.gob.ve/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.mercal.gob.ve/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.mercal.gob.ve/">
+  <xs:element name="mediacionetl" type="tns:mediacionetl"/>
+  <xs:element name="mediacionetlResponse" type="tns:mediacionetlResponse"/>
+  <xs:complexType name="mediacionetl">
+    <xs:sequence>
+      <xs:element name="dirPDI" type="xs:string"/>
+      <xs:element name="nombreJob" type="xs:string"/>
+      <xs:element name="dirEjecucion" type="xs:string"/>
+      <xs:element name="repositorio" type="xs:string"/>
+      <xs:element name="usuarioRepositorio" type="xs:string"/>
+      <xs:element name="passUsuarioRepo" type="xs:string"/>
+      <xs:element name="transformaciones" type="xs:string"/>
+      <xs:element name="hostBDOracle" type="xs:string"/>
+      <xs:element name="usuarioBDOracle" type="xs:string"/>
+      <xs:element name="passUsuarioBDOracle" type="xs:string"/>
+      <xs:element name="bdOracle" type="xs:string"/>
+      <xs:element name="hostBDCassandra" type="xs:string"/>
+      <xs:element name="colummFamily" type="xs:string"/>
+      <xs:element name="keySpace" type="xs:string"/>
+      <xs:element name="hostBDApp" type="xs:string"/>
+      <xs:element name="usuarioBDApp" type="xs:string"/>
+      <xs:element name="passUsuarioBDApp" type="xs:string"/>
+      <xs:element name="bdApp" type="xs:string"/>
+      <xs:element name="idPlanEjec" type="xs:string"/>
+      <xs:element name="jobModo" type="xs:string"/>
+      <xs:element name="timestampIni" type="xs:string"/>
+      <xs:element name="timestampFin" type="xs:string"/>
+      <xs:element name="dirLogs" type="xs:string"/>
+      <xs:element name="nivelLogs" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mediacionetlResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcepcionServicio" type="tns:ExcepcionServicio"/>
+  <xs:complexType name="ExcepcionServicio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ExcepcionServicio">
+    <wsdl:part element="tns:ExcepcionServicio" name="ExcepcionServicio">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="mediacionetlResponse">
+    <wsdl:part element="tns:mediacionetlResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="mediacionetl">
+    <wsdl:part element="tns:mediacionetl" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MediacionEtl">
+    <wsdl:operation name="mediacionetl">
+      <wsdl:input message="tns:mediacionetl" name="mediacionetl">
+    </wsdl:input>
+      <wsdl:output message="tns:mediacionetlResponse" name="mediacionetlResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ExcepcionServicio" name="ExcepcionServicio">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MediacionEtlServiceSoapBinding" type="tns:MediacionEtl">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="mediacionetl">
+      <soap12:operation soapAction="urn:MediacionEtl" style="document"/>
+      <wsdl:input name="mediacionetl">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="mediacionetlResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ExcepcionServicio">
+        <soap12:fault name="ExcepcionServicio" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MediacionEtlService">
+    <wsdl:port binding="tns:MediacionEtlServiceSoapBinding" name="MediacionEtlPort">
+      <soap12:address location="https://ws.mercal-dev.gob.ve:8443/MediacionEtl/services/MediacionEtl"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

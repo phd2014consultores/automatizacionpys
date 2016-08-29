@@ -5,7 +5,6 @@
  */
 package ve.gob.mercal.app.services;
 
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -24,7 +23,7 @@ public class procesosEjecutandose {
                 cant++;
             }
         }catch (Exception e){
-            printStackTrace();
+            System.err.println(e);
         }
         return cant-1;
     }

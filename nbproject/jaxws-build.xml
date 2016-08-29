@@ -33,5 +33,73 @@
         <delete dir="${build.generated.dir}/jax-wsCache/QueryApp"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/ve/gob/mercal/ws"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-QueryApp"/>
+    <target name="wsimport-client-CargaInicial" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/CargaInicial"/>
+        <property name="wsdl-CargaInicial" location="xml-resources/web-service-references/CargaInicial/wsdl/ws.mercal-dev.gob.ve_8443/CargaInicial/services/CargaInicial.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CargaInicial" destdir="${build.generated.dir}/jax-wsCache/CargaInicial" wsdl="${wsdl-CargaInicial}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="https://ws.mercal-dev.gob.ve:8443/CargaInicial/services/CargaInicial?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-CargaInicial}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/CargaInicial"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/CargaInicial">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-CargaInicial" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/CargaInicial"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ve/gob/mercal/ws"/>
+    </target>
+    <target name="wsimport-client-CargaInicialEtl" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/CargaInicialEtl"/>
+        <property name="wsdl-CargaInicialEtl" location="xml-resources/web-service-references/CargaInicialEtl/wsdl/ws.mercal-dev.gob.ve_8443/CargaInicialEtl/services/CargaInicialEtl.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CargaInicialEtl" destdir="${build.generated.dir}/jax-wsCache/CargaInicialEtl" wsdl="${wsdl-CargaInicialEtl}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="https://ws.mercal-dev.gob.ve:8443/CargaInicialEtl/services/CargaInicialEtl?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-CargaInicialEtl}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/CargaInicialEtl"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/CargaInicialEtl">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-CargaInicialEtl" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/CargaInicialEtl"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ve/gob/mercal/ws"/>
+    </target>
+    <target name="wsimport-client-MediacionEtl" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/MediacionEtl"/>
+        <property name="wsdl-MediacionEtl" location="xml-resources/web-service-references/MediacionEtl/wsdl/ws.mercal-dev.gob.ve_8443/MediacionEtl/services/MediacionEtl.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/MediacionEtl" destdir="${build.generated.dir}/jax-wsCache/MediacionEtl" wsdl="${wsdl-MediacionEtl}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="https://ws.mercal-dev.gob.ve:8443/MediacionEtl/services/MediacionEtl?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-MediacionEtl}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/MediacionEtl"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/MediacionEtl">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-MediacionEtl" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/MediacionEtl"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ve/gob/mercal/ws"/>
+    </target>
+    <target name="wsimport-client-Mediacion" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/Mediacion"/>
+        <property name="wsdl-Mediacion" location="xml-resources/web-service-references/Mediacion/wsdl/ws.mercal-dev.gob.ve_8443/Mediacion/services/Mediacion.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Mediacion" destdir="${build.generated.dir}/jax-wsCache/Mediacion" wsdl="${wsdl-Mediacion}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="https://ws.mercal-dev.gob.ve:8443/Mediacion/services/Mediacion?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-Mediacion}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/Mediacion"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/Mediacion">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-Mediacion" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/Mediacion"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ve/gob/mercal/ws"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-QueryApp, wsimport-client-CargaInicial, wsimport-client-CargaInicialEtl, wsimport-client-MediacionEtl, wsimport-client-Mediacion"/>
 </project>

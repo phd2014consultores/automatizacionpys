@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.mercal.gob.ve/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CargaInicialService" targetNamespace="http://ws.mercal.gob.ve/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.mercal.gob.ve/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.mercal.gob.ve/">
+  <xs:element name="cargainicial" type="tns:cargainicial"/>
+  <xs:element name="cargainicialResponse" type="tns:cargainicialResponse"/>
+  <xs:complexType name="cargainicial">
+    <xs:sequence>
+      <xs:element name="dirPDI" type="xs:string"/>
+      <xs:element name="nombreJob" type="xs:string"/>
+      <xs:element name="dirEjecucion" type="xs:string"/>
+      <xs:element name="repositorio" type="xs:string"/>
+      <xs:element name="usuarioRepositorio" type="xs:string"/>
+      <xs:element name="passUsuarioRepo" type="xs:string"/>
+      <xs:element name="hostBDOracle" type="xs:string"/>
+      <xs:element name="usuarioBDOracle" type="xs:string"/>
+      <xs:element name="passUsuarioBDOracle" type="xs:string"/>
+      <xs:element name="bdOracle" type="xs:string"/>
+      <xs:element name="hostBDCassandra" type="xs:string"/>
+      <xs:element name="colummFamily" type="xs:string"/>
+      <xs:element name="keySpace" type="xs:string"/>
+      <xs:element name="hostBDApp" type="xs:string"/>
+      <xs:element name="usuarioBDApp" type="xs:string"/>
+      <xs:element name="passUsuarioBDApp" type="xs:string"/>
+      <xs:element name="bdApp" type="xs:string"/>
+      <xs:element name="idPlanEjec" type="xs:string"/>
+      <xs:element name="jobModo" type="xs:string"/>
+      <xs:element name="dirLogs" type="xs:string"/>
+      <xs:element name="nivelLogs" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cargainicialResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcepcionServicio" type="tns:ExcepcionServicio"/>
+  <xs:complexType name="ExcepcionServicio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ExcepcionServicio">
+    <wsdl:part element="tns:ExcepcionServicio" name="ExcepcionServicio">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cargainicialResponse">
+    <wsdl:part element="tns:cargainicialResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cargainicial">
+    <wsdl:part element="tns:cargainicial" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CargaInicial">
+    <wsdl:operation name="cargainicial">
+      <wsdl:input message="tns:cargainicial" name="cargainicial">
+    </wsdl:input>
+      <wsdl:output message="tns:cargainicialResponse" name="cargainicialResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ExcepcionServicio" name="ExcepcionServicio">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CargaInicialServiceSoapBinding" type="tns:CargaInicial">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="cargainicial">
+      <soap12:operation soapAction="urn:Cargainicial" style="document"/>
+      <wsdl:input name="cargainicial">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="cargainicialResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ExcepcionServicio">
+        <soap12:fault name="ExcepcionServicio" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CargaInicialService">
+    <wsdl:port binding="tns:CargaInicialServiceSoapBinding" name="CargaInicialPort">
+      <soap12:address location="https://ws.mercal-dev.gob.ve:8443/CargaInicial/services/CargaInicial"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

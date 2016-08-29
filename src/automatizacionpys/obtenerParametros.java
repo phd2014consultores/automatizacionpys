@@ -83,7 +83,6 @@ public class obtenerParametros {
             } catch (Exception e) {                
                 System.err.println(e);
             }
-
         }else{            
             try {
                 pdi = Servicio.queryapp("SELECT conf.json_config , pe.id_plan_ejecucion, "
@@ -147,8 +146,7 @@ public class obtenerParametros {
             }
             pdi = pdi.substring(1, pdi.length()-1);
             elementObject = parser.parse(pdi);
-        }
-            
+        }    
             if(pdi.length()>2){              
                 if(existeCampo.existeCampo(pdi,"valor")){                                 
                     aux = elementObject.getAsJsonObject().get("valor").getAsString();
@@ -161,6 +159,10 @@ public class obtenerParametros {
                 if(existeCampo.existeCampo(pdi,"timestamp_fin_ejec")){                                 
                     aux = elementObject.getAsJsonObject().get("timestamp_fin_ejec").getAsString();
                     param.setTimestampFin(aux);
+                }
+                if(existeCampo.existeCampo(pdi,"id_plan_ejecucion")){                                 
+                    aux = elementObject.getAsJsonObject().get("id_plan_ejecucion").getAsString();
+                    param.setIdplanEjec(aux);
                 }
                 pdi = elementObject.getAsJsonObject().get("json_config").getAsString();
                 elementObject = parser.parse(pdi); 
@@ -281,7 +283,7 @@ public class obtenerParametros {
             }else{
                //escribir en el log
             }
-        
+        param.setTipo(tipo);
         return param;
     }
 }

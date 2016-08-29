@@ -37,7 +37,7 @@ public class Automatizacionpys {
                         param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
                         switch (param.getTipo()) {
  
-                            case "CargaInicial":
+                            case "INICIAR_CARGA":
                                 try {
                                     result = Servicio.cargainicial(param.getDirPDI(),param.getNombreJob(),
                                             param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
@@ -51,7 +51,7 @@ public class Automatizacionpys {
                                 }
                             break;
 
-                            case "CargaInicialEtl":
+                            case "INICIAR_CARGA_ETL":
                                 try {
                                     result = Servicio.cargainicialetl(param.getDirPDI(),param.getNombreJob(),
                                             param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
@@ -66,7 +66,7 @@ public class Automatizacionpys {
                                 }
                             break;
 
-                            case "Mediacion":
+                            case "INICIAR_MEDIACION":
                                 try {
                                     result = Servicio.mediacion(param.getDirPDI(),param.getNombreJob(),
                                             param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
@@ -79,7 +79,7 @@ public class Automatizacionpys {
                                     System.err.println(e);
                                 }
 
-                            case "MediacionEtl":
+                            case "INICIAR_MEDIACION_ETL":
                                 try {
                                     result = Servicio.mediacionetl(param.getDirPDI(),param.getNombreJob(),
                                             param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),

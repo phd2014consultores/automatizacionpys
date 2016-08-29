@@ -149,10 +149,7 @@ public class obtenerParametros {
             elementObject = parser.parse(pdi);
         }
             
-            if(pdi.length()>2){
-                
-                pdi = pdi.substring(1, pdi.length()-1);
-                elementObject = parser.parse(pdi);                
+            if(pdi.length()>2){              
                 if(existeCampo.existeCampo(pdi,"valor")){                                 
                     aux = elementObject.getAsJsonObject().get("valor").getAsString();
                     param.setTransformaciones(aux);
@@ -165,10 +162,8 @@ public class obtenerParametros {
                     aux = elementObject.getAsJsonObject().get("timestamp_fin_ejec").getAsString();
                     param.setTimestampFin(aux);
                 }
-
                 pdi = elementObject.getAsJsonObject().get("json_config").getAsString();
                 elementObject = parser.parse(pdi); 
-
                 if(existeCampo.existeCampo(pdi,"directorio_pdi")){                                 
                     aux = elementObject.getAsJsonObject().get("directorio_pdi").getAsString();
                     param.setDirPDI(aux);
@@ -201,6 +196,7 @@ public class obtenerParametros {
                     aux = elementObject.getAsJsonObject().get("directorio_job").getAsString();
                     param.setDirEjecucion(aux);
                 }
+                param.setJobModo("carga");
             }else{
            //escribir en el log
             }
@@ -229,8 +225,8 @@ public class obtenerParametros {
                     if(existeCampo.existeCampo(cluster,"keyspace")){             
                         aux = elementObject.getAsJsonObject().get("keyspace").getAsString();
                         param.setKeyspace(aux);
-                    }                    
-                }  
+                    }
+                }
             }else{
                //escribir en el log
             }

@@ -13,11 +13,17 @@ import ve.gob.mercal.app.services.Servicio;
  */
 public class obtenerParametros {
     private static Parametros param = new Parametros();
-    private static String result = "";
+    private static String pdi = "";
+    private static String cluster = "";
+    private static String db_pys = "";
+    private static String tienda = "";
     
     public static Parametros obtenerParametros(){
         try{
-            result = Servicio.queryapp("");
+            pdi = Servicio.queryapp("");
+            cluster = Servicio.queryapp("");
+            db_pys = Servicio.queryapp("");
+            tienda = Servicio.queryapp("");
             
         } catch (Exception e) {
             // TODO Auto-generated catch block

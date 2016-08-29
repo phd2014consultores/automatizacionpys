@@ -14,7 +14,7 @@ import com.google.gson.JsonParser;
  */
 public class cargasMAX {
     
-    private static int max = 6;
+    private static int max = 0;
     private static String  result = "";
     private static int newMax;
     

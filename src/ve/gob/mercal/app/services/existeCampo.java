@@ -13,6 +13,6 @@ package ve.gob.mercal.app.services;
 public class existeCampo {
     
     public static boolean existeCampo(String json,String palabra){   
-        return json.toLowerCase().contains(palabra.toLowerCase());
+        return json.toLowerCase().contains(palabra.toLowerCase()); //REVISA SI UNA CADENA ESTA DENTRO DE OTRA
     }    
 }

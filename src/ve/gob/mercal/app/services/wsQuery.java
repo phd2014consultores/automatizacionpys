@@ -12,6 +12,7 @@ import ve.gob.mercal.ws.ExcepcionServicio_Exception;
  * @author phd2014
  */
 public class wsQuery {
+    //EJECUTA UNA CONSULTA EN LA BASE DE DATOS
     public static String queryapp(java.lang.String query) throws ExcepcionServicio_Exception {
         ve.gob.mercal.ws.QueryAppService service = new ve.gob.mercal.ws.QueryAppService();
         ve.gob.mercal.ws.QueryApp port = service.getQueryAppPort();

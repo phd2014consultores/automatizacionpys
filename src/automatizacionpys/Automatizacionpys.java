@@ -27,12 +27,11 @@ public class Automatizacionpys {
         int max = 0;
 
         while(true){
-            cargasMAX.setcargasMAX();
-            max= cargasMAX.getcargasMAX();
-            if (procesosEjecutandose.procesosEjecutandose() < max){
+            cargasMAX.setcargasMAX(); //REVISO EN LA BD LA CANTIDAD MAXIMA DE PROCESOS
+            max= cargasMAX.getcargasMAX();//OBTENGO LA CANTIDAD MAXIMA DE PROCESOS
+            if (procesosEjecutandose.procesosEjecutandose() < max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
                 Parametros param;
-                //OBTENER PARAMETROS Y EJECUTAR EL JOB
-                param = obtenerParametros.obtenerParametros();
+                param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
                 switch (param.getTipo()) {
  
                     case "CargaInicial":
@@ -54,7 +53,7 @@ public class Automatizacionpys {
                 
             }else{
                 try {
-                    sleep(300000);
+                    sleep(300000); //DUERMO LA EJECUCION DURANTE 5 MINUTOS
                 } catch (Exception e) {
                     System.err.println(e);
                 }      

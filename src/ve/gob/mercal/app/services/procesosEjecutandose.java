@@ -18,14 +18,14 @@ public class procesosEjecutandose {
         try{
             Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -C java -o pid=" });
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while (input.readLine() != null)
+            while (input.readLine() != null) //CUENTO LA CANTIDAD DE PROCESOS EN EJECUCION
             {
-                cant++;
+                cant++; 
             }
         }catch (Exception e){
             System.err.println(e);
         }
-        return cant-1;
+        return cant-1;//RESTO EL VALOR DEL PROCESO GREP ADICIONAL
     }
         
 }

@@ -35,7 +35,7 @@ public class Parametros {
     private String dirLogs;
     private String nivelLogs;
     
-    private String tipo;
+    private String tipo; //ESTE CAMPO SE USA PARA SABER QUE TIPO DE JOB ES (CARGAINICIAL, MEDIACION ..ETC)
 
     public String getTipo() {
         return tipo;

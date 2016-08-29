@@ -5,7 +5,7 @@
  */
 package automatizacionpys;
 
-import ve.gob.mercal.app.services.wsQuery;
+import ve.gob.mercal.app.services.Servicio;
 
 /**
  *
@@ -17,7 +17,7 @@ public class obtenerParametros {
     
     public static Parametros obtenerParametros(){
         try{
-            result = wsQuery.queryapp("");
+            result = Servicio.queryapp("");
             
         } catch (Exception e) {
             // TODO Auto-generated catch block

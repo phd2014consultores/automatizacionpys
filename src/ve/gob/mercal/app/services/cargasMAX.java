@@ -20,7 +20,7 @@ public class cargasMAX {
     
     public static void setcargasMAX(){
         try{
-            result = wsQuery.queryapp("SELECT json_config FROM public.config WHERE elemento ='cluster';");
+            result = Servicio.queryapp("SELECT json_config FROM public.config WHERE elemento ='cluster';");
             
         } catch (Exception e) {
             // TODO Auto-generated catch block

@@ -30,8 +30,28 @@ public class Automatizacionpys {
             cargasMAX.setcargasMAX();
             max= cargasMAX.getcargasMAX();
             if (procesosEjecutandose.procesosEjecutandose() < max){
-                
+                Parametros param;
                 //OBTENER PARAMETROS Y EJECUTAR EL JOB
+                param = obtenerParametros.obtenerParametros();
+                switch (param.getTipo()) {
+ 
+                    case "CargaInicial":
+                        //instrucciones;
+                    break;
+
+                    case "CargaInicialEtl":
+                        //instrucciones;
+                    break;
+                    
+                    case "Mediacion":
+                        //instrucciones;
+                    break;
+                        
+                    case "MediacionEtl":
+                        //instrucciones;
+                    break;
+                }
+                
             }else{
                 try {
                     sleep(300000);

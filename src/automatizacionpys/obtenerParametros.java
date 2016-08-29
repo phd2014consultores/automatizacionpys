@@ -20,30 +20,46 @@ public class obtenerParametros {
     
     public static Parametros obtenerParametros(){
         try{
-            pdi = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , jo.job\n" +
-"  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe , public.jobs as jo\n" +
-"  WHERE conf.activo=true and elemento='pdi' and pe.id_job=jo.id_job and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' and pe.timestamp_planificacion in (\n" +
-"		SELECT min(pe.timestamp_planificacion)\n" +
-"		  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe\n" +
-"		  WHERE conf.activo=true and elemento='pdi'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
-            cluster = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , jo.job\n" +
-"  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe , public.jobs as jo\n" +
-"  WHERE conf.activo=true and elemento='cluster' and pe.id_job=jo.id_job and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' and pe.timestamp_planificacion in (\n" +
-"		SELECT min(pe.timestamp_planificacion)\n" +
-"		  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe\n" +
-"		  WHERE conf.activo=true and elemento='cluster'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
-            bd_pys = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , jo.job\n" +
-"  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe , public.jobs as jo\n" +
-"  WHERE conf.activo=true and elemento='bd_pys' and pe.id_job=jo.id_job and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' and pe.timestamp_planificacion in (\n" +
-"		SELECT min(pe.timestamp_planificacion)\n" +
-"		  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe\n" +
-"		  WHERE conf.activo=true and elemento='bd_pys'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
-            tienda = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , jo.job\n" +
-"  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe , public.jobs as jo\n" +
-"  WHERE conf.activo=true and elemento='tienda' and pe.id_job=jo.id_job and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' and pe.timestamp_planificacion in (\n" +
-"		SELECT min(pe.timestamp_planificacion)\n" +
-"		  FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe\n" +
-"		  WHERE conf.activo=true and elemento='tienda'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
+            pdi = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , "
+                    + "jo.job FROM public.config as conf, public.plan_ejecuciones as pe , "
+                    + "public.pasos_plan_ejecucion as ppe , public.jobs as jo WHERE conf.activo=true "
+                    + "and elemento='pdi' and pe.id_job=jo.id_job and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
+                    + "and ppe.status_plan='en espera' and pe.timestamp_planificacion in "
+                    + "(SELECT min(pe.timestamp_planificacion) FROM public.config as conf, "
+                    + "public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe "
+                    + "WHERE conf.activo=true and elemento='pdi'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
+                    + "and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
+            
+            
+            cluster = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , "
+                    + "jo.job FROM public.config as conf, public.plan_ejecuciones as pe , "
+                    + "public.pasos_plan_ejecucion as ppe , public.jobs as jo WHERE conf.activo=true "
+                    + "and elemento='cluster' and pe.id_job=jo.id_job and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
+                    + "and ppe.status_plan='en espera' and pe.timestamp_planificacion in "
+                    + "(SELECT min(pe.timestamp_planificacion) FROM public.config as conf, "
+                    + "public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe "
+                    + "WHERE conf.activo=true and elemento='cluster'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
+                    + "and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
+            
+            
+            bd_pys = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , jo.job "
+                    + "FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe, "
+                    + "public.jobs as jo WHERE conf.activo=true and elemento='bd_pys' and pe.id_job=jo.id_job "
+                    + "and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' "
+                    + "and pe.timestamp_planificacion in (SELECT min(pe.timestamp_planificacion) FROM public.config as conf,"
+                    + "public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe WHERE conf.activo=true "
+                    + "and elemento='bd_pys'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera' ) "
+                    + "and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
+            
+            
+            tienda = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , jo.job "
+                    + "FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe,"
+                    + "public.jobs as jo WHERE conf.activo=true and elemento='tienda' and pe.id_job=jo.id_job "
+                    + "and pe.id_plan_ejecucion=ppe.id_plan_ejecucion and ppe.status_plan='en espera'"
+                    + " and pe.timestamp_planificacion in (SELECT min(pe.timestamp_planificacion) "
+                    + "FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe "
+                    + "WHERE conf.activo=true and elemento='tienda'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
+                    + "and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
             
         } catch (Exception e) {
             // TODO Auto-generated catch block

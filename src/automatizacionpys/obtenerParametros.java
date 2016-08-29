@@ -30,6 +30,7 @@ public class obtenerParametros {
             e.printStackTrace();
         }
         //AQUI IRAN TODOS LOS SET DE LOS PARAMETROS..
+        
         return param;
     }
 }

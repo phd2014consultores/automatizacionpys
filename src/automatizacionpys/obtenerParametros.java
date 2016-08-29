@@ -198,36 +198,41 @@ public class obtenerParametros {
                     aux = elementObject.getAsJsonObject().get("directorio_job").getAsString();
                     param.setDirEjecucion(aux);
                 }
-                param.setJobModo("carga");
+                param.setJobModo("CARGA");
             }else{
            //escribir en el log
             }
             if(!cluster.equals("[]")){
-            aux = "";
-            cluster = cluster.substring(1, cluster.length()-1);
-            elementObject = parser.parse(cluster);                   
-            cluster = elementObject.getAsJsonObject().get("json_config").getAsString();
-            elementObject = parser.parse(cluster);
+                aux = "";
+                cluster = cluster.substring(1, cluster.length()-1);
+                elementObject = parser.parse(cluster);                   
+                cluster = elementObject.getAsJsonObject().get("json_config").getAsString();              
                 if(existeCampo.existeCampo(cluster,"nodos")){
-                    cluster = elementObject.getAsJsonObject().get("nodos").getAsString();
-                    cluster = cluster.substring(1, cluster.length()-1);
-
-                    StringTokenizer st = new StringTokenizer(cluster,"}");
-                    cluster = st.nextToken()+"}";
-                    elementObject = parser.parse(cluster);
-
-                    if(existeCampo.existeCampo(cluster,"host")){             
-                        aux = elementObject.getAsJsonObject().get("host").getAsString();
-                        param.setHostbdCassandra(aux);
-                    }
-                    if(existeCampo.existeCampo(cluster,"columnFamily")){             
-                        aux = elementObject.getAsJsonObject().get("columnFamily").getAsString();
-                        param.setColumnFamily(aux);
-                    }
-                    if(existeCampo.existeCampo(cluster,"keyspace")){             
-                        aux = elementObject.getAsJsonObject().get("keyspace").getAsString();
-                        param.setKeyspace(aux);
-                    }
+                    JsonParser parser2 = new JsonParser();
+                    JsonElement elementObject2;
+                    elementObject2 = parser2.parse(cluster);
+                    System.out.println("cluster1 "+ cluster);
+//                    cluster = elementObject2.getAsJsonObject().get("nodos").getAsString();
+//                    System.out.println("cluster2 "+ cluster);
+//                    
+//                    
+//                    cluster = cluster.substring(1, cluster.length()-1);
+//                    StringTokenizer st = new StringTokenizer(cluster,"}");
+//                    cluster = st.nextToken()+"}";
+//                    elementObject2 = parser2.parse(cluster);
+//
+//                    if(existeCampo.existeCampo(cluster,"host")){             
+//                        aux = elementObject2.getAsJsonObject().get("host").getAsString();
+//                        param.setHostbdCassandra(aux);
+//                    }
+//                    if(existeCampo.existeCampo(cluster,"columnFamily")){             
+//                        aux = elementObject2.getAsJsonObject().get("columnFamily").getAsString();
+//                        param.setColumnFamily(aux);
+//                    }
+//                    if(existeCampo.existeCampo(cluster,"keyspace")){             
+//                        aux = elementObject2.getAsJsonObject().get("keyspace").getAsString();
+//                        param.setKeyspace(aux);
+//                    }
                 }
             }else{
                //escribir en el log

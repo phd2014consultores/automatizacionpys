@@ -16,7 +16,7 @@ public class procesosEjecutandose {
     private static int cant=0;
     public static int procesosEjecutandose(){
         try{
-            Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -C job -o pid=" });
+            Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -C java -o pid=" });
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while (input.readLine() != null) //CUENTO LA CANTIDAD DE PROCESOS EN EJECUCION
             {

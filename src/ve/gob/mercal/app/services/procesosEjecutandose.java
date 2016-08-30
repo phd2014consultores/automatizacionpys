@@ -15,17 +15,20 @@ import java.io.InputStreamReader;
 public class procesosEjecutandose {
     private static int cant=0;
     public static int procesosEjecutandose(){
+        cant = 0;
         try{
-            Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -C java -o pid=" });
+            Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -x | grep automatizacionpys" });
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while (input.readLine() != null) //CUENTO LA CANTIDAD DE PROCESOS EN EJECUCION
             {
-                cant++; 
+                cant++;   
             }
         }catch (Exception e){
             System.err.println(e);
         }
-        return cant-1;//RESTO EL VALOR DEL PROCESO GREP ADICIONAL
+        cant = cant-2;
+        System.out.println(cant);
+        return cant;//RESTO EL VALOR DEL PROCESO GREP ADICIONAL
     }
         
 }

@@ -27,15 +27,15 @@ public class Automatizacionpys {
         // TODO code application logic here
         int max = 0;
         int result = -999;
-        if(args.length > 1){
-            if(args[0].equals("start")){           
-                while(true){
-                    cargasMAX.setcargasMAX(); //REVISO EN LA BD LA CANTIDAD MAXIMA DE PROCESOS
-                    max= cargasMAX.getcargasMAX();//OBTENGO LA CANTIDAD MAXIMA DE PROCESOS
-                    System.out.println("el numero maximo es: "+max);
-                    if (procesosEjecutandose.procesosEjecutandose() < max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
-                        Parametros param;
-                        param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
+        int time = 5;
+        if(args[0].equals("start")){           
+            while(true){
+                cargasMAX.setcargasMAX(); //REVISO EN LA BD LA CANTIDAD MAXIMA DE PROCESOS
+                max= cargasMAX.getcargasMAX();//OBTENGO LA CANTIDAD MAXIMA DE PROCESOS
+                System.out.println("el numero maximo es: "+max);
+                if (procesosEjecutandose.procesosEjecutandose() < max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
+                    Parametros param;
+                    param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
 //                        switch (param.getTipo()) {
 //                            case "INICIAR_CARGA":
 //                                try {
@@ -92,24 +92,21 @@ public class Automatizacionpys {
 //                                }
 //                            break;
 //                        }
-                        System.out.println(param.getBdOracle());
-                    }else{
-                        int time = 0;
-                        time = Integer.parseInt(args[1]);
-                        time = time * 60000;
-                        try {
-                            sleep(time); //DUERMO LA EJECUCION DURANTE 'TIME' MINUTOS
-                        } catch (Exception e) {
-                            System.err.println(e);
-                        }      
+                    System.out.println(param.getBdOracle());
+                }else{
+                    time = Integer.parseInt(args[1]);
+                    time = time * 60000;
+                    try {
+                        sleep(time); //DUERMO LA EJECUCION DURANTE 'TIME' MINUTOS
+                    } catch (Exception e) {
+                        System.err.println(e);
                     }      
-                } 
-            }else{
-                if(args[0].equals("stop")){
-                    detenerProceso();
-                }
+                }      
+            } 
+        }else{
+            if(args[0].equals("stop")){
+                detenerProceso();
             }
-            
         }
     }  
 }

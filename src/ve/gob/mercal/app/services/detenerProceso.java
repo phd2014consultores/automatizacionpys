@@ -7,6 +7,7 @@ package ve.gob.mercal.app.services;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -17,10 +18,13 @@ public class detenerProceso {
     private static String proceso= "";
     public static void detenerProceso(){
         try{
-            Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -C automatizacionpys -o pid=" });
+            Process p = Runtime.getRuntime().exec(new String[] { "bash", "-c", "ps -x | grep automatizacionpys" });
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((proceso=input.readLine()) != null) //CUENTO LA CANTIDAD DE PROCESOS EN EJECUCION
             {
+                StringTokenizer st = new StringTokenizer(proceso,"p");
+                proceso = st.nextToken();
+                System.out.println(proceso);
                 Runtime.getRuntime().exec(new String[] { "bash", "-c", "kill -9 "+proceso });
             }
         }catch (Exception e){

@@ -29,6 +29,7 @@ public class detenerProceso {
                 Runtime.getRuntime().exec(new String[] { "bash", "-c", "kill -9 "+proceso });
             }
         }catch (Exception e){
+            log.error("Excepción deteniendo proceso :");
             log.error(e);
         }
     }

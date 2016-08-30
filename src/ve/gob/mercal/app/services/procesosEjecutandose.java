@@ -25,6 +25,7 @@ public class procesosEjecutandose {
                 cant++;   
             }
         }catch (Exception e){
+            log.error("Excepción obteniendo procesos ejecutandose :");
             log.error(e);
         }
         cant = cant-2;

@@ -28,11 +28,7 @@ public class cargasMAX {
         try{
             result = Servicio.queryapp("SELECT json_config FROM public.config WHERE elemento ='cluster';");
             
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            log.error(e);
-        }
-        if(existeCampo.existeCampo(result,"max_cargas_paralelas")){
+            if(existeCampo.existeCampo(result,"max_cargas_paralelas")){
             result = result.substring(1, result.length()-1);
             JsonParser parser = new JsonParser();
             JsonElement elementObject;
@@ -40,12 +36,18 @@ public class cargasMAX {
             result = elementObject.getAsJsonObject().get("json_config").getAsString();
             elementObject = parser.parse(result);
             newMax = elementObject.getAsJsonObject().get("max_cargas_paralelas").getAsInt();
-            if(max != newMax){
-                max = newMax;
-                log.info("Se actualizó un nuevo valor para el máximo de cargas");
-            }
+                if(max != newMax){
+                    max = newMax;
+                    log.info("Se actualizó un nuevo valor para el máximo de cargas");
+                }
             log.info("El valor máximo de carga es: "+max);
         }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            log.error("Excepción obteniendo cargas máximas :");
+            log.error(e);
+        }
+
         
     }
     

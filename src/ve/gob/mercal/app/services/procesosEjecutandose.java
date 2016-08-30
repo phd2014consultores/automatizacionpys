@@ -27,7 +27,6 @@ public class procesosEjecutandose {
             System.err.println(e);
         }
         cant = cant-2;
-        System.out.println(cant);
         return cant;//RESTO EL VALOR DEL PROCESO GREP ADICIONAL
     }
         

@@ -36,63 +36,62 @@ public class Automatizacionpys {
                 if (procesosEjecutandose.procesosEjecutandose() < max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
                     Parametros param;
                     param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
-//                        switch (param.getTipo()) {
-//                            case "INICIAR_CARGA":
-//                                try {
-//                                    result = Servicio.cargainicial(param.getDirPDI(),param.getNombreJob(),
-//                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-//                                            param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
-//                                            param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
-//                                            param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
-//                                            param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
-//                                            param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
-//                                } catch (Exception e) {
-//                                    System.err.println(e);
-//                                }
-//                            break;
-//                            case "INICIAR_CARGA_ETL":
-//                                try {
-//                                    result = Servicio.cargainicialetl(param.getDirPDI(),param.getNombreJob(),
-//                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-//                                            param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
-//                                            param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
-//                                            param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
-//                                            param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
-//                                            param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),
-//                                            param.getNivelLogs());
-//                                } catch (Exception e) {
-//                                    System.err.println(e);
-//                                }
-//                            break;
-//                            case "INICIAR_MEDIACION":
-//                                try {
-//                                    result = Servicio.mediacion(param.getDirPDI(),param.getNombreJob(),
-//                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-//                                            param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
-//                                            param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
-//                                            param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
-//                                            param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
-//                                            param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
-//                                } catch (Exception e) {
-//                                    System.err.println(e);
-//                                }
-//                            break;
-//                            case "INICIAR_MEDIACION_ETL":
-//                                try {
-//                                    result = Servicio.mediacionetl(param.getDirPDI(),param.getNombreJob(),
-//                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-//                                            param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
-//                                            param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
-//                                            param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
-//                                            param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
-//                                            param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getTimestampIni(),
-//                                            param.getTimestampFin(),param.getDirLogs(),param.getNivelLogs());
-//                                } catch (Exception e) {
-//                                    System.err.println(e);
-//                                }
-//                            break;
-//                        }
-                    System.out.println(param.getBdOracle());
+                        switch (param.getTipo()) {
+                            case "INICIAR_CARGA":
+                                try {
+                                    result = Servicio.cargainicial(param.getDirPDI(),param.getNombreJob(),
+                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                            param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
+                                            param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
+                                            param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
+                                            param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
+                                            param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            break;
+                            case "INICIAR_CARGA_ETL":
+                                try {
+                                    result = Servicio.cargainicialetl(param.getDirPDI(),param.getNombreJob(),
+                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                            param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
+                                            param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
+                                            param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
+                                            param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
+                                            param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),
+                                            param.getNivelLogs());
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            break;
+                            case "INICIAR_MEDIACION":
+                                try {
+                                    result = Servicio.mediacion(param.getDirPDI(),param.getNombreJob(),
+                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                            param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
+                                            param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
+                                            param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
+                                            param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
+                                            param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            break;
+                            case "INICIAR_MEDIACION_ETL":
+                                try {
+                                    result = Servicio.mediacionetl(param.getDirPDI(),param.getNombreJob(),
+                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                            param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
+                                            param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
+                                            param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
+                                            param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
+                                            param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getTimestampIni(),
+                                            param.getTimestampFin(),param.getDirLogs(),param.getNivelLogs());
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            break;
+                        }
                 }else{
                     time = Integer.parseInt(args[1]);
                     time = time * 60000;

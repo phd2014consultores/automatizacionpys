@@ -40,6 +40,7 @@ public class obtenerParametros {
            
         } catch (Exception e) {
             // TODO Auto-generated catch block
+            log.error("Excepción obteniendo parámetros pdi 1 :");
             log.error(e);
         }        
         aux = "";
@@ -80,7 +81,8 @@ public class obtenerParametros {
                         + "FROM public.config as conf, public.plan_ejecuciones as pe , public.pasos_plan_ejecucion as ppe "
                         + "WHERE conf.activo=true and elemento='tienda'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
                         + "and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
-            } catch (Exception e) {                
+            } catch (Exception e) {
+                log.error("Excepción obteniendo parámetros cluster , bd_pys y tienda :");
                 log.error(e);
             }
         }else{            
@@ -142,6 +144,7 @@ public class obtenerParametros {
                         + "pe.timestamp_planificacion::timestamp <= now()::timestamp;");
 
             } catch (Exception e) {
+                log.error("Excepción obteniendo parámetros pdi, cluster , bd_pys y tienda :");
                 log.error(e);
             }
             pdi = pdi.substring(1, pdi.length()-1);

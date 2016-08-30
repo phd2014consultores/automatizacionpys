@@ -32,17 +32,9 @@ public class Automatizacionpys {
         // TODO code application logic here
         int max = 0;
         int result = -999;
-        int time = 5;
-        
+        int time = 5;       
         PropertyConfigurator.configure("/home/pbonillo/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
-        log.debug("Sample debug message");
-        log.info("");
-        
-        
-        log.warn("Sample warn message");
-        log.error("Sample error message");
-        log.fatal("Sample fatal message");
-        
+        log.info("Iniciando el proceso de Automatización");
         if(args[0].equals("start")){           
             while(true){
                 cargasMAX.setcargasMAX(); //REVISO EN LA BD LA CANTIDAD MAXIMA DE PROCESOS
@@ -65,6 +57,7 @@ public class Automatizacionpys {
                                         log.info("Se inicio un proceso de Carga Inicial");
                                     }
                                 } catch (Exception e) {
+                                    log.error("Excepción en Carga Inicial :");
                                     log.error(e);
 
                                 }
@@ -83,6 +76,7 @@ public class Automatizacionpys {
                                         log.info("Se inicio un proceso de Carga Inicial ETL");
                                     }
                                 } catch (Exception e) {
+                                    log.error("Excepción en Carga Inicial ETL :");
                                     log.error(e);
                                 }
                             break;
@@ -99,6 +93,7 @@ public class Automatizacionpys {
                                         log.info("Se inicio un proceso de Mediación");
                                     }
                                 } catch (Exception e) {
+                                    log.error("Excepción en Mediación :");
                                     log.error(e);
                                 }
                             break;
@@ -116,6 +111,7 @@ public class Automatizacionpys {
                                         log.info("Se inicio un proceso de Mediación ETL");
                                     }
                                 } catch (Exception e) {
+                                    log.error("Excepción en Mediación ETL :");
                                     log.error(e);
                                 }
                             break;
@@ -129,6 +125,7 @@ public class Automatizacionpys {
                     try {
                         sleep(time); //DUERMO LA EJECUCION DURANTE 'TIME' MINUTOS
                     } catch (Exception e) {
+                        log.error("Excepción durmiendo ejecución");
                         log.error(e);
                     }      
                 }      

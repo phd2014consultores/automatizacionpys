@@ -5,8 +5,11 @@
  */
 package ve.gob.mercal.app.services;
 
+import automatizacionpys.Automatizacionpys;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -14,17 +17,20 @@ import com.google.gson.JsonParser;
  */
 public class cargasMAX {
     
+    static Logger log = Logger.getLogger(Automatizacionpys.class.getName());
     private static int max = 0;
     private static String  result = "";
     private static int newMax;
     
     public static void setcargasMAX(){
+        PropertyConfigurator.configure("/home/pbonillo/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
+        
         try{
             result = Servicio.queryapp("SELECT json_config FROM public.config WHERE elemento ='cluster';");
             
         } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            log.error(e);
         }
         if(existeCampo.existeCampo(result,"max_cargas_paralelas")){
             result = result.substring(1, result.length()-1);
@@ -36,7 +42,9 @@ public class cargasMAX {
             newMax = elementObject.getAsJsonObject().get("max_cargas_paralelas").getAsInt();
             if(max != newMax){
                 max = newMax;
+                log.info("Se actualizó un nuevo valor para el máximo de cargas");
             }
+            log.info("El valor máximo de carga es: "+max);
         }
         
     }

@@ -6,7 +6,11 @@
 package automatizacionpys;
 
 //import ve.gob.mercal.ws.ExcepcionServicio_Exception;
-
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import java.io.*;
+import java.sql.SQLException;
+import java.util.*;
 import static java.lang.Thread.sleep;
 import ve.gob.mercal.app.services.Servicio;
 import ve.gob.mercal.app.services.cargasMAX;
@@ -22,18 +26,29 @@ public class Automatizacionpys {
     /**
      * @param args the command line arguments
      */
-
+    static Logger log = Logger.getLogger(Automatizacionpys.class.getName());
+    
     public static void main(String[] args) {
         // TODO code application logic here
         int max = 0;
         int result = -999;
         int time = 5;
+        
+        PropertyConfigurator.configure("/home/pbonillo/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
+        log.debug("Sample debug message");
+        log.info("");
+        
+        
+        log.warn("Sample warn message");
+        log.error("Sample error message");
+        log.fatal("Sample fatal message");
+        
         if(args[0].equals("start")){           
             while(true){
                 cargasMAX.setcargasMAX(); //REVISO EN LA BD LA CANTIDAD MAXIMA DE PROCESOS
                 max= cargasMAX.getcargasMAX();//OBTENGO LA CANTIDAD MAXIMA DE PROCESOS
-                System.out.println("el numero maximo es: "+max);
                 if (procesosEjecutandose.procesosEjecutandose() < max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
+                    log.info("Existe disponibilidad para una nueva ejecución");
                     Parametros param;
                     param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
                         switch (param.getTipo()) {
@@ -46,8 +61,12 @@ public class Automatizacionpys {
                                             param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
                                             param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
                                             param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
+                                    if(result > 0 ){
+                                        log.info("Se inicio un proceso de Carga Inicial");
+                                    }
                                 } catch (Exception e) {
-                                    System.err.println(e);
+                                    log.error(e);
+
                                 }
                             break;
                             case "INICIAR_CARGA_ETL":
@@ -60,8 +79,11 @@ public class Automatizacionpys {
                                             param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
                                             param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),
                                             param.getNivelLogs());
+                                    if(result > 0 ){
+                                        log.info("Se inicio un proceso de Carga Inicial ETL");
+                                    }
                                 } catch (Exception e) {
-                                    System.err.println(e);
+                                    log.error(e);
                                 }
                             break;
                             case "INICIAR_MEDIACION":
@@ -73,8 +95,11 @@ public class Automatizacionpys {
                                             param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
                                             param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
                                             param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
+                                    if(result > 0 ){
+                                        log.info("Se inicio un proceso de Mediación");
+                                    }
                                 } catch (Exception e) {
-                                    System.err.println(e);
+                                    log.error(e);
                                 }
                             break;
                             case "INICIAR_MEDIACION_ETL":
@@ -87,24 +112,31 @@ public class Automatizacionpys {
                                             param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
                                             param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getTimestampIni(),
                                             param.getTimestampFin(),param.getDirLogs(),param.getNivelLogs());
+                                if(result > 0 ){
+                                        log.info("Se inicio un proceso de Mediación ETL");
+                                    }
                                 } catch (Exception e) {
-                                    System.err.println(e);
+                                    log.error(e);
                                 }
                             break;
                         }
                 }else{
-                    time = Integer.parseInt(args[1]);
+                    if(!args[1].equals(null)){
+                        log.info("El tiempo maximo de espera asignado es: " + args[1]+" minutos");
+                        time = Integer.parseInt(args[1]);
+                    }                  
                     time = time * 60000;
                     try {
                         sleep(time); //DUERMO LA EJECUCION DURANTE 'TIME' MINUTOS
                     } catch (Exception e) {
-                        System.err.println(e);
+                        log.error(e);
                     }      
                 }      
             } 
         }else{
             if(args[0].equals("stop")){
-                detenerProceso();
+                log.info("Detener Proceso ha sido Iniciado");
+                detenerProceso();             
             }
         }
     }  

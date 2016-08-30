@@ -8,6 +8,7 @@ package ve.gob.mercal.app.services;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import static ve.gob.mercal.app.services.cargasMAX.log;
 
 /**
  *
@@ -28,7 +29,7 @@ public class detenerProceso {
                 Runtime.getRuntime().exec(new String[] { "bash", "-c", "kill -9 "+proceso });
             }
         }catch (Exception e){
-            System.err.println(e);
+            log.error(e);
         }
     }
 }

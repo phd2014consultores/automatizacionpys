@@ -7,6 +7,7 @@ package ve.gob.mercal.app.services;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import static ve.gob.mercal.app.services.cargasMAX.log;
 
 /**
  *
@@ -24,9 +25,10 @@ public class procesosEjecutandose {
                 cant++;   
             }
         }catch (Exception e){
-            System.err.println(e);
+            log.error(e);
         }
         cant = cant-2;
+        log.info("Existen "+cant+" procesos ejecutandose actualmente");
         return cant;//RESTO EL VALOR DEL PROCESO GREP ADICIONAL
     }
         

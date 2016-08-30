@@ -5,6 +5,7 @@
  */
 package automatizacionpys;
 
+import static automatizacionpys.Automatizacionpys.log;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import java.util.StringTokenizer;
@@ -25,6 +26,7 @@ public class obtenerParametros {
     private static String tipo;
     
     public static Parametros obtenerParametros(){
+        log.info("Inicia proceso de obtención de parámetros");
         try{
             pdi = Servicio.queryapp("SELECT  conf.json_config , pe.id_plan_ejecucion , "
                     + "jo.job FROM public.config as conf, public.plan_ejecuciones as pe , "
@@ -38,10 +40,8 @@ public class obtenerParametros {
            
         } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        //AQUI IRAN TODOS LOS SET DE LOS PARAMETROS..
-        
+            log.error(e);
+        }        
         aux = "";
         pdi = pdi.substring(1, pdi.length()-1);
         JsonParser parser = new JsonParser();
@@ -81,7 +81,7 @@ public class obtenerParametros {
                         + "WHERE conf.activo=true and elemento='tienda'and pe.id_plan_ejecucion=ppe.id_plan_ejecucion "
                         + "and ppe.status_plan='en espera' ) and pe.timestamp_planificacion::timestamp <= now()::timestamp;");
             } catch (Exception e) {                
-                System.err.println(e);
+                log.error(e);
             }
         }else{            
             try {
@@ -142,7 +142,7 @@ public class obtenerParametros {
                         + "pe.timestamp_planificacion::timestamp <= now()::timestamp;");
 
             } catch (Exception e) {
-                System.err.println(e);
+                log.error(e);
             }
             pdi = pdi.substring(1, pdi.length()-1);
             elementObject = parser.parse(pdi);
@@ -200,7 +200,7 @@ public class obtenerParametros {
                 }
                 param.setJobModo("CARGA");
             }else{
-           //escribir en el log
+                log.warn("No se obtuvieron los valores del PDI");
             }
             if(!cluster.equals("[]")){
                 aux = "";
@@ -228,7 +228,7 @@ public class obtenerParametros {
                     }
                 }
             }else{
-               //escribir en el log
+               log.warn("No se obtuvieron los valores del cluster");
             }
             if(!bd_pys.equals("[]")){
                 aux = "";
@@ -253,7 +253,7 @@ public class obtenerParametros {
                     param.setPassusuariobdApp(aux);
                 }
             }else{
-               //escribir en el log
+               log.warn("No se obtuvieron los valores de bd_pys");
             }
             if(!tienda.equals("[]")){
                 aux = "";
@@ -279,7 +279,7 @@ public class obtenerParametros {
                     param.setBdOracle(aux);
                 }
             }else{
-               //escribir en el log
+               log.warn("No se obtuvieron los valores de las tiendas");
             }
         param.setTipo(tipo);
         return param;

@@ -5,12 +5,8 @@
  */
 package automatizacionpys;
 
-//import ve.gob.mercal.ws.ExcepcionServicio_Exception;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import java.io.*;
-import java.sql.SQLException;
-import java.util.*;
 import static java.lang.Thread.sleep;
 import ve.gob.mercal.app.services.Servicio;
 import ve.gob.mercal.app.services.cargasMAX;
@@ -39,7 +35,7 @@ public class Automatizacionpys {
             while(true){
                 cargasMAX.setcargasMAX(); //REVISO EN LA BD LA CANTIDAD MAXIMA DE PROCESOS
                 max= cargasMAX.getcargasMAX();//OBTENGO LA CANTIDAD MAXIMA DE PROCESOS
-                if (procesosEjecutandose.procesosEjecutandose() < max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
+                if (procesosEjecutandose.procesosEjecutandose() <= max){ //VERIFICO NUMERO DE PROCESOS EN EJECUCION
                     log.info("Existe disponibilidad para una nueva ejecución");
                     Parametros param;
                     param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB

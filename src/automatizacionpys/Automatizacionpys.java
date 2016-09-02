@@ -39,79 +39,85 @@ public class Automatizacionpys {
                     log.info("Existe disponibilidad para una nueva ejecución");
                     Parametros param;
                     param = obtenerParametros.obtenerParametros();//OBTENER PARAMETROS Y EJECUTAR EL JOB
-                        switch (param.getTipo()) {
-                            case "INICIAR_CARGA":
-                                try {
-                                    result = Servicio.cargainicial(param.getDirPDI(),param.getNombreJob(),
-                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-                                            param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
-                                            param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
-                                            param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
-                                            param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
-                                            param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
-                                    if(result > 0 ){
-                                        log.info("Se inicio un proceso de Carga Inicial");
-                                    }
-                                } catch (Exception e) {
-                                    log.error("Excepción en Carga Inicial :");
-                                    log.error(e);
+                    switch (param.getTipo()) {
+                        case "INICIAR_CARGA":
+                            try {
+                                result = Servicio.cargainicial(param.getDirPDI(),param.getNombreJob(),
+                                        param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                        param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
+                                        param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
+                                        param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
+                                        param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
+                                        param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
+                                if(result == 0 ){
+                                    log.info("Se inicio un proceso de Carga Inicial");
+                                }
+                            } catch (Exception e) {
+                                log.error("Excepción en Carga Inicial :");
+                                log.error(e);
 
+                            }
+                        break;
+                        case "INICIAR_CARGA_ETL":
+                            try {
+                                result = Servicio.cargainicialetl(param.getDirPDI(),param.getNombreJob(),
+                                        param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                        param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
+                                        param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
+                                        param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
+                                        param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
+                                        param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),
+                                        param.getNivelLogs());
+                                if(result == 0 ){
+                                    log.info("Se inicio un proceso de Carga Inicial ETL");
                                 }
-                            break;
-                            case "INICIAR_CARGA_ETL":
-                                try {
-                                    result = Servicio.cargainicialetl(param.getDirPDI(),param.getNombreJob(),
-                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-                                            param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
-                                            param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
-                                            param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
-                                            param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
-                                            param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),
-                                            param.getNivelLogs());
-                                    if(result > 0 ){
-                                        log.info("Se inicio un proceso de Carga Inicial ETL");
-                                    }
-                                } catch (Exception e) {
-                                    log.error("Excepción en Carga Inicial ETL :");
-                                    log.error(e);
+                            } catch (Exception e) {
+                                log.error("Excepción en Carga Inicial ETL :");
+                                log.error(e);
+                            }
+                        break;
+                        case "INICIAR_MEDIACION":
+                            try {
+                                result = Servicio.mediacion(param.getDirPDI(),param.getNombreJob(),
+                                        param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                        param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
+                                        param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
+                                        param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
+                                        param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
+                                        param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
+                                if(result == 0 ){
+                                    log.info("Se inicio un proceso de Mediación");
                                 }
-                            break;
-                            case "INICIAR_MEDIACION":
-                                try {
-                                    result = Servicio.mediacion(param.getDirPDI(),param.getNombreJob(),
-                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-                                            param.getPassusuarioRepo(),param.getHostbdOracle(),param.getUsuariobdOracle(),
-                                            param.getPassusuariobdOracle(),param.getBdOracle(),param.getHostbdCassandra(),
-                                            param.getColumnFamily(),param.getKeyspace(),param.getHostbdApp(),
-                                            param.getUsuariobdApp(),param.getPassusuariobdApp(),param.getBdApp(),
-                                            param.getIdplanEjec(),param.getJobModo(),param.getDirLogs(),param.getNivelLogs());
-                                    if(result > 0 ){
-                                        log.info("Se inicio un proceso de Mediación");
-                                    }
-                                } catch (Exception e) {
-                                    log.error("Excepción en Mediación :");
-                                    log.error(e);
+                            } catch (Exception e) {
+                                log.error("Excepción en Mediación :");
+                                log.error(e);
+                            }
+                        break;
+                        case "INICIAR_MEDIACION_ETL":
+                            try {
+                                result = Servicio.mediacionetl(param.getDirPDI(),param.getNombreJob(),
+                                        param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
+                                        param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
+                                        param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
+                                        param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
+                                        param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
+                                        param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getTimestampIni(),
+                                        param.getTimestampFin(),param.getDirLogs(),param.getNivelLogs());
+                            if(result == 0 ){
+                                    log.info("Se inicio un proceso de Mediación ETL");
                                 }
-                            break;
-                            case "INICIAR_MEDIACION_ETL":
-                                try {
-                                    result = Servicio.mediacionetl(param.getDirPDI(),param.getNombreJob(),
-                                            param.getDirEjecucion(),param.getRepositorio(),param.getUsuarioRepositorio(),
-                                            param.getPassusuarioRepo(),param.getTransformaciones(),param.getHostbdOracle(),
-                                            param.getUsuariobdOracle(),param.getPassusuariobdOracle(),param.getBdOracle(),
-                                            param.getHostbdCassandra(),param.getColumnFamily(),param.getKeyspace(),
-                                            param.getHostbdApp(),param.getUsuariobdApp(),param.getPassusuariobdApp(),
-                                            param.getBdApp(),param.getIdplanEjec(),param.getJobModo(),param.getTimestampIni(),
-                                            param.getTimestampFin(),param.getDirLogs(),param.getNivelLogs());
-                                if(result > 0 ){
-                                        log.info("Se inicio un proceso de Mediación ETL");
-                                    }
-                                } catch (Exception e) {
-                                    log.error("Excepción en Mediación ETL :");
-                                    log.error(e);
-                                }
-                            break;
-                        }
+                            } catch (Exception e) {
+                                log.error("Excepción en Mediación ETL :");
+                                log.error(e);
+                            }
+                        break;
+                    }
+                    try {
+                        sleep(2000);
+                    } catch (Exception e) {
+                        log.error("Excepción durmiendo ejecución");
+                        log.error(e);
+                    }    
                 }else{
                     if(!args[1].equals(null)){
                         log.info("El tiempo maximo de espera asignado es: " + args[1]+" minutos");

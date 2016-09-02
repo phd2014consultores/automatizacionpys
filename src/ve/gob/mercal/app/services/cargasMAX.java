@@ -18,12 +18,12 @@ import org.apache.log4j.PropertyConfigurator;
 public class cargasMAX {
     
     static Logger log = Logger.getLogger(Automatizacionpys.class.getName());
-    private static int max = 0;
+    private static int max = 2;
     private static String  result = "";
     private static int newMax;
     
     public static void setcargasMAX(){
-        PropertyConfigurator.configure("/home/pbonillo/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
+        PropertyConfigurator.configure("/home/phd2014/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
         
         try{
             result = Servicio.queryapp("SELECT json_config FROM public.config WHERE elemento ='cluster';");

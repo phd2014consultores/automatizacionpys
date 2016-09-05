@@ -24,6 +24,7 @@ public class obtenerParametros {
     private static String tienda = "";
     private static String aux;
     private static String tipo;
+    private static boolean bandera = false;
     
     public static Parametros obtenerParametros(){
         log.info("Inicia proceso de obtención de parámetros");
@@ -85,6 +86,7 @@ public class obtenerParametros {
                 log.error("Excepción obteniendo parámetros cluster , bd_pys y tienda :");
                 log.error(e);
             }
+            bandera = true;
         }else{            
             try {
                 pdi = Servicio.queryapp("SELECT conf.json_config , pe.id_plan_ejecucion, "
@@ -193,14 +195,20 @@ public class obtenerParametros {
                     aux = elementObject.getAsJsonObject().get("nivel_logs").getAsString();
                     param.setNivelLogs(aux);
                 }
-                if(existeCampo.existeCampo(pdi,"nombre_job")){         
-                    aux = elementObject.getAsJsonObject().get("nombre_job").getAsString();
-                    param.setNombreJob(aux);
+                param.setNombreJob(tipo);
+
+                if(bandera){
+                    if(existeCampo.existeCampo(pdi,"directorio_job_ci")){          
+                        aux = elementObject.getAsJsonObject().get("directorio_job_ci").getAsString();
+                        param.setDirEjecucion(aux);
+                    }
+                }else{
+                    if(existeCampo.existeCampo(pdi,"directorio_job_m")){          
+                        aux = elementObject.getAsJsonObject().get("directorio_job_m").getAsString();
+                        param.setDirEjecucion(aux);
+                    }               
                 }
-                if(existeCampo.existeCampo(pdi,"directorio_job")){          
-                    aux = elementObject.getAsJsonObject().get("directorio_job").getAsString();
-                    param.setDirEjecucion(aux);
-                }
+                
                 param.setJobModo("CARGA");
             }else{
                 log.warn("No se obtuvieron los valores del PDI");

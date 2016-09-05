@@ -29,7 +29,7 @@ public class Automatizacionpys {
         int max = 0;
         int result = -999;
         int time = 5;       
-        PropertyConfigurator.configure("/home/phd2014/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
+        PropertyConfigurator.configure("/home/pbonillo/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
         log.info("Iniciando el proceso de Automatización");
         if(args[0].equals("start")){           
             while(true){

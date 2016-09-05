@@ -23,7 +23,7 @@ public class cargasMAX {
     private static int newMax;
     
     public static void setcargasMAX(){
-        PropertyConfigurator.configure("/home/phd2014/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
+        PropertyConfigurator.configure("/home/pbonillo/NetBeansProjects/automatizacionpys/src/automatizacionpys/log4j.properties");
         
         try{
             result = Servicio.queryapp("SELECT json_config FROM public.config WHERE elemento ='cluster';");
